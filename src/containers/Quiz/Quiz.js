@@ -6,7 +6,8 @@ import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
 class Quiz extends Component {
 
   state = {
-    isFinished: true,
+    results: {}, // {id : 'success' | 'error'}
+    isFinished: false,
     activeQuestion: 0,
     answerState: null, // {id : 'success' | 'error'}
     quiz: [
@@ -31,7 +32,7 @@ class Quiz extends Component {
           {text: '1703', id: 3},
           {text: '1803', id: 4}
         ]
-      },
+      }
     ]
   }
 
@@ -45,11 +46,16 @@ class Quiz extends Component {
     }
 
     const question = this.state.quiz[this.state.activeQuestion]
+    const results = this.state.results
 
     if (question.rightAnswerId === answerId) {
+      if (!results[question.id]) {
+        results[question.id] = 'success'
+      }
 
       this.setState({
-        answerState: {[answerId]: 'success'}
+        answerState: {[answerId]: 'success'},
+        results
       })
 
       const timeout = window.setTimeout(() => {
@@ -67,14 +73,26 @@ class Quiz extends Component {
       }, 1000)
 
     } else {
+      results[question.id] = 'error'
+
       this.setState({
-        answerState: {[answerId]: 'error'}
+        answerState: {[question.id]: 'error'},
+        results
       })
     }
   }
 
   isQuizFinished() {
     return this.state.activeQuestion + 1 === this.state.quiz.length
+  }
+
+  retryHandler = () => {
+    this.setState({
+      results: {},
+      isFinished: false,
+      activeQuestion: 0,
+      answerState: null
+    })
   }
 
   render() {
@@ -84,7 +102,11 @@ class Quiz extends Component {
           <h1>Ответьте на все вопросы</h1>
           {
             this.state.isFinished
-              ? <FinishedQuiz />
+              ? <FinishedQuiz
+                results={this.state.results}
+                quiz={this.state.quiz}
+                onRetry={this.retryHandler}
+              />
               : <ActiveQuiz
                 answers={this.state.quiz[this.state.activeQuestion].answers}
                 question={this.state.quiz[this.state.activeQuestion].question}
