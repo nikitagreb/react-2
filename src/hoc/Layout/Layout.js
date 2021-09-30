@@ -18,14 +18,10 @@ class Layout extends Component {
     return (
 
       <div className={classes.Layout}>
-
-        {console.log(this.state)}
-
         <MenuToggle
           onToggle={this.toggleMenuHandler}
           isOpen={this.state.menu}
         />
-
         <main>
           {this.props.children}
         </main>
