@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import classes from './Auth.module.scss'
 import Button from '../../components/UI/Button/Button'
 import Input from '../../components/UI/Input/Input'
+import {validate, validateForm} from '../../form/formFramework'
 import is from 'is_js'
 
 export default class Auth extends Component {
@@ -54,39 +55,14 @@ export default class Auth extends Component {
 
     control.value = event.target.value
     control.touched = true
-    control.valid = this.validateControl(control.value, control.validation)
+    control.valid = validate(control.value, control.validation)
 
     formControls[controlName] = control
 
-    let isFormValid = true
-    Object.keys(formControls).forEach(name => {
-      isFormValid = formControls[name].valid && isFormValid
-    })
-
     this.setState({
       formControls,
-      isFormValid
+      isFormValid: validateForm(formControls)
     })
-  }
-
-  validateControl(value, validation) {
-    if (!validation) {
-      return true
-    }
-
-    let isValid = true
-
-    if (validation.required) {
-      isValid = value.trim() !== '' && isValid
-    }
-    if (validation.email) {
-      isValid = is.email(value) && isValid
-    }
-    if (validation.minLength) {
-      isValid = value.length >= validation.minLength && isValid
-    }
-
-    return isValid
   }
 
   renderInputs() {
