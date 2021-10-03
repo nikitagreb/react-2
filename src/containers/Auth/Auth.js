@@ -101,7 +101,7 @@ export default class Auth extends Component {
           valid={control.valid}
           touched={control.touched}
           label={control.label}
-          validation={!!control.validation}
+          shouldValidate={!!control.validation}
           errorMessage={control.errorMessage}
           onChange={event => this.onChangeHandler(event, controlName)}
         />
