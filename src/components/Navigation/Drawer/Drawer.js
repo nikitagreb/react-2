@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import classes from './Drawer.module.scss'
-import BackDrop from '../../../containers/UI/BackDrop/BackDrop'
+import BackDrop from '../../UI/BackDrop/BackDrop'
 import {NavLink} from 'react-router-dom'
 
 const links = [
