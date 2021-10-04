@@ -3,7 +3,6 @@ import classes from './Auth.module.scss'
 import Button from '../../components/UI/Button/Button'
 import Input from '../../components/UI/Input/Input'
 import {validate, validateForm} from '../../form/formFramework'
-import is from 'is_js'
 
 export default class Auth extends Component {
 
