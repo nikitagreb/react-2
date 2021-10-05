@@ -13,30 +13,7 @@ class Quiz extends Component {
     activeQuestion: 0,
     answerState: null, // {id : 'success' | 'error'}
     loading: true,
-    quiz: [
-      // {
-      //   question: 'Какого цвета небо',
-      //   rightAnswerId: 3,
-      //   id: 1,
-      //   answers: [
-      //     {text: 'Синий', id: 1},
-      //     {text: 'Белый', id: 2},
-      //     {text: 'Голубой', id: 3},
-      //     {text: 'Красный', id: 4}
-      //   ]
-      // },
-      // {
-      //   question: 'В каком году Санкт-Петербург?',
-      //   rightAnswerId: 3,
-      //   id: 2,
-      //   answers: [
-      //     {text: '1700', id: 1},
-      //     {text: '1702', id: 2},
-      //     {text: '1703', id: 3},
-      //     {text: '1803', id: 4}
-      //   ]
-      // }
-    ]
+    quiz: []
   }
 
   onAnswerClickHandler = answerId => {
