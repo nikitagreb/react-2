@@ -23,7 +23,7 @@ export function auth(email, password, isLogin) {
     localStorage.setItem('expirationDate', expirationDate)
 
     dispatch(authSuccess(data.idToken))
-    dispatch(autoLogout(expirationDate))
+    dispatch(autoLogout(data.expiresIn))
   }
 }
 
@@ -50,4 +50,8 @@ export function logout() {
   return {
     type: AUTH_LOGOUT
   }
+}
+
+export function autoLogin () {
+
 }

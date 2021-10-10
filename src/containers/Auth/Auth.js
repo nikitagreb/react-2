@@ -43,7 +43,6 @@ class Auth extends Component {
   }
 
   loginHandler = () => {
-
     this.props.auth(
       this.state.formControls.email.value,
       this.state.formControls.password.value,
@@ -52,7 +51,6 @@ class Auth extends Component {
   }
 
   registerHandler = () => {
-
     this.props.auth(
       this.state.formControls.email.value,
       this.state.formControls.password.value,
